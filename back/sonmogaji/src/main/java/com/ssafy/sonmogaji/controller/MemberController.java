@@ -39,11 +39,11 @@ public class MemberController {
 	}
 
 	// AccessToken 재발급
-	@GetMapping("/re-issue")
-	public ResponseEntity<?> reIssue(@RequestParam("memberAddress") String memberAddress, @RequestParam("refreshToken") String refreshToken) {
-		LoginResponseDto responseDto = memberService.reIssueAccessToken(memberAddress, refreshToken);
-		return new ResponseEntity<LoginResponseDto>(responseDto, HttpStatus.OK);
-	}
+//	@GetMapping("/re-issue")
+//	public ResponseEntity<?> reIssue(@RequestParam("memberAddress") String memberAddress, @RequestParam("refreshToken") String refreshToken) {
+//		LoginResponseDto responseDto = memberService.reIssueAccessToken(memberAddress, refreshToken);
+//		return new ResponseEntity<LoginResponseDto>(responseDto, HttpStatus.OK);
+//	}
 
 
 	// 로그아웃

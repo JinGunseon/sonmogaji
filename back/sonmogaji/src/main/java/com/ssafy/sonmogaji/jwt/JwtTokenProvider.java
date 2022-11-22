@@ -45,13 +45,13 @@ public class JwtTokenProvider {
     }
 
     // refresh token 생성
-    public String createRefreshToken(String memberAddress) {
-        Long tokenValidTime = 1000L * 60 * 60 * 25; // 하루
-
-        String refreshToken = this.createToken(memberAddress, tokenValidTime);
-        redisService.setValues(memberAddress, refreshToken, Duration.ofMillis(tokenValidTime));
-        return refreshToken;
-    }
+//    public String createRefreshToken(String memberAddress) {
+//        Long tokenValidTime = 1000L * 60 * 60 * 25; // 하루
+//
+//        String refreshToken = this.createToken(memberAddress, tokenValidTime);
+//        redisService.setValues(memberAddress, refreshToken, Duration.ofMillis(tokenValidTime));
+//        return refreshToken;
+//    }
 
     // 토큰 생성
     public String createToken(String memberAddress, Long tokenValidTime) {
@@ -61,8 +61,6 @@ public class JwtTokenProvider {
                 .setSubject(memberAddress)
                 .setIssuedAt(now) //생성일 설정
                 .setExpiration(new Date(now.getTime() + tokenValidTime)); //만료일 설정
-
-//		    claims.put("userId", userId); //담고 싶은 값
 
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
@@ -123,12 +121,12 @@ public class JwtTokenProvider {
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 
-    public void checkRefreshToken(String memberAddress, String refreshToken) {
-        String redisRT = redisService.getValues(memberAddress);
-        if (!refreshToken.equals(redisRT)) {
-            throw new BadRequestException("토큰이 만료되었습니다!");
-        }
-    }
+//    public void checkRefreshToken(String memberAddress, String refreshToken) {
+//        String redisRT = redisService.getValues(memberAddress);
+//        if (!refreshToken.equals(redisRT)) {
+//            throw new BadRequestException("토큰이 만료되었습니다!");
+//        }
+//    }
 
     public void logout(String memberAddress, String accessToken) {
         Long expiredAccessTokenTime = getJwtContents(accessToken).getExpiration().getTime() - new Date().getTime();

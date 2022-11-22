@@ -1,6 +1,5 @@
 package com.ssafy.sonmogaji.model.dto;
 
-import com.ssafy.sonmogaji.model.entity.Signee;
 import lombok.Data;
 
 @Data
