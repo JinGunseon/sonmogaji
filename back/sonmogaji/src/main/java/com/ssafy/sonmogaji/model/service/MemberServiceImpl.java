@@ -39,19 +39,18 @@ public class MemberServiceImpl implements MemberService {
 		// 로그인 로직
 			Member member = memberRepository.findByMemberAddress(memberAddress).orElseThrow(() -> new IllegalArgumentException("회원정보가 존재하지 않습니다!"));
 			String accessToken = jwtTokenProvider.createAccessToken(memberAddress);
-			String refreshToken = jwtTokenProvider.createRefreshToken(memberAddress);
 
-		return new LoginResponseDto(accessToken, refreshToken);
+		return new LoginResponseDto(accessToken);
 	}
 
-	@Override
-	public LoginResponseDto reIssueAccessToken(String memberAddress, String refreshToken) {
-		Member member = memberRepository.findByMemberAddress(memberAddress).orElseThrow(() -> new IllegalArgumentException("회원정보가 존재하지 않습니다!"));
-		jwtTokenProvider.checkRefreshToken(memberAddress, refreshToken);
-		String accessToken = jwtTokenProvider.createAccessToken(member.getMemberAddress());
-
-		return new LoginResponseDto(accessToken, refreshToken);
-	}
+//	@Override
+//	public LoginResponseDto reIssueAccessToken(String memberAddress, String refreshToken) {
+//		Member member = memberRepository.findByMemberAddress(memberAddress).orElseThrow(() -> new IllegalArgumentException("회원정보가 존재하지 않습니다!"));
+//		jwtTokenProvider.checkRefreshToken(memberAddress, refreshToken);
+//		String accessToken = jwtTokenProvider.createAccessToken(member.getMemberAddress());
+//
+//		return new LoginResponseDto(accessToken, refreshToken);
+//	}
 
 	@Override
 	public void logout(String memberAddress, String accessToken) {

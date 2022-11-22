@@ -387,6 +387,13 @@ public class MessageController {
 
             String filename=apachePOIService.createImg(mf,message.getTxHash());
 
+            // 작성 완료된 각서 db에 저장
+
+            TransactionDto transactionDto = message.getTdto();
+            transactionDto.setTxAddress(message.getTxHash());
+            transactionService.writeTransaction(transactionDto, null);
+
+
             log.info(filename);
             //mf 를 다시 base64로
             File steganofied = new File(filename);

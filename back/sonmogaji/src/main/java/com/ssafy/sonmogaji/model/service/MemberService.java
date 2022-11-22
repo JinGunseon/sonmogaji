@@ -8,7 +8,7 @@ public interface MemberService {
 	public LoginResponseDto login(String memberAddress);
 
 
-    public LoginResponseDto reIssueAccessToken(String memberAddress, String refreshToken);
+//    public LoginResponseDto reIssueAccessToken(String memberAddress, String refreshToken);
 
 	void logout(String memberAddress, String accessToken);
 }
