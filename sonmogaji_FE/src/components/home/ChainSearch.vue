@@ -50,6 +50,7 @@ export default {
       modalData: {
         txAddress: "",
         txTitle: "제목",
+        txContent : "",
       },
       chainList: null
       // [
@@ -89,6 +90,7 @@ export default {
       clearInterval(callback);
       // hash 값으로 모달에 띄울 데이터를 받아온다.
       this.$bvModal.show("modal");
+      this.modalData.txContent = tx.txContent;
       this.modalData.txAddress = tx.txAddress;
       this.modalData.txTitle = tx.txTitle;
     },
